@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import productsShowcase from "@/assets/products-showcase.jpg";
+import premiumCollectionBanner from "@/assets/premium-collection-banner.jpg";
 import muscletechMass from "@/assets/products/muscletech-mass.jpg";
 import dymatizeSuper from "@/assets/products/dymatize-super.jpg";
 import musclemedsCarnivor from "@/assets/products/musclemeds-carnivor.jpg";
@@ -13,21 +13,35 @@ import coreChamps from "@/assets/products/core-champs.jpg";
 import labradaMuscle from "@/assets/products/labrada-muscle.jpg";
 import { ArrowRight, Zap, Award, TrendingUp, ShoppingCart } from "lucide-react";
 
-const products = [
-  { name: "Mass-Tech Extreme 2000", brand: "MuscleTech", image: muscletechMass },
-  { name: "Super Mass Gainer", brand: "Dymatize", image: dymatizeSuper },
-  { name: "Carnivor Mass", brand: "MuscleMeds", image: musclemedsCarnivor },
-  { name: "Anabolic Mass", brand: "Kevin Levrone", image: levroneAnabolic },
-  { name: "Gold Lean Mass", brand: "Kevin Levrone", image: levroneGold },
-  { name: "Critical Mass Professional", brand: "Applied Nutrition", image: appliedCritical },
-  { name: "King Mass", brand: "Ronnie Coleman", image: ronnieKing },
-  { name: "Hard Mass Gainer", brand: "Inner Armour", image: innerArmour },
-  { name: "Mass Infusion", brand: "Nutrex", image: nutrexMass },
-  { name: "MASS Gainer", brand: "CORE CHAMPS", image: coreChamps },
-  { name: "Muscle Mass Gainer", brand: "Labrada", image: labradaMuscle },
+export interface Product {
+  id: string;
+  name: string;
+  brand: string;
+  image: string;
+  price: number;
+  rating: number;
+  description: string;
+}
+
+export const products: Product[] = [
+  { id: "1", name: "Mass-Tech Extreme 2000", brand: "MuscleTech", image: muscletechMass, price: 12500, rating: 4.8, description: "Advanced muscle building formula with 80g protein per serving" },
+  { id: "2", name: "Super Mass Gainer", brand: "Dymatize", image: dymatizeSuper, price: 11900, rating: 4.7, description: "High-calorie mass gainer with BCAAs and creatine" },
+  { id: "3", name: "Carnivor Mass", brand: "MuscleMeds", image: musclemedsCarnivor, price: 13500, rating: 4.9, description: "Beef protein isolate mass gainer for lean muscle" },
+  { id: "4", name: "Anabolic Mass", brand: "Kevin Levrone", image: levroneAnabolic, price: 12000, rating: 4.6, description: "Premium anabolic mass formula for extreme gains" },
+  { id: "5", name: "Gold Lean Mass", brand: "Kevin Levrone", image: levroneGold, price: 14500, rating: 4.9, description: "Gold standard lean mass gainer with minimal fat" },
+  { id: "6", name: "Critical Mass Professional", brand: "Applied Nutrition", image: appliedCritical, price: 11500, rating: 4.5, description: "Professional-grade mass gainer for serious athletes" },
+  { id: "7", name: "King Mass", brand: "Ronnie Coleman", image: ronnieKing, price: 15000, rating: 5.0, description: "King of mass gainers with 60g protein per serving" },
+  { id: "8", name: "Hard Mass Gainer", brand: "Inner Armour", image: innerArmour, price: 10500, rating: 4.4, description: "Hard-hitting mass gainer for explosive growth" },
+  { id: "9", name: "Mass Infusion", brand: "Nutrex", image: nutrexMass, price: 12200, rating: 4.7, description: "Advanced mass infusion technology for rapid gains" },
+  { id: "10", name: "MASS Gainer", brand: "CORE CHAMPS", image: coreChamps, price: 10800, rating: 4.6, description: "Champion formula mass gainer with optimal nutrition" },
+  { id: "11", name: "Muscle Mass Gainer", brand: "Labrada", image: labradaMuscle, price: 11800, rating: 4.8, description: "Trusted muscle mass formula since 1995" },
 ];
 
-export const HeroSection = () => {
+interface HeroSectionProps {
+  onProductClick: (product: Product) => void;
+}
+
+export const HeroSection = ({ onProductClick }: HeroSectionProps) => {
   return (
     <section className="relative min-h-screen pt-24 pb-16 overflow-hidden bg-background">
       {/* Background gradient effects */}
@@ -93,8 +107,8 @@ export const HeroSection = () => {
         <div className="relative rounded-2xl overflow-hidden shadow-[var(--shadow-premium)] mb-12">
           <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-transparent to-gold/10 pointer-events-none z-10" />
           <img 
-            src={productsShowcase} 
-            alt="Gold Creatine Products" 
+            src={premiumCollectionBanner} 
+            alt="Premium Collection - Kevin Levrone, Goldline, Ceylon Supplement" 
             className="w-full h-[400px] object-cover"
           />
           <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-background via-background/90 to-transparent z-20">
@@ -103,7 +117,9 @@ export const HeroSection = () => {
                 Premium Supplement Collection
               </span>
             </h2>
-            <p className="text-lg text-muted-foreground">Maximum strength, premium results from world-class brands</p>
+            <p className="text-lg text-muted-foreground">
+              Kevin Levrone, Goldline & Ceylon Supplement Gold Series
+            </p>
           </div>
         </div>
 
@@ -136,6 +152,7 @@ export const HeroSection = () => {
                   <Button 
                     size="sm" 
                     className="w-full bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-primary-foreground font-semibold text-xs"
+                    onClick={() => onProductClick(product)}
                   >
                     View Details
                   </Button>
