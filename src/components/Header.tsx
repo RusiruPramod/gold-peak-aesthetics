@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/ceylon-logo.png";
+import { ReactNode } from "react";
 
-export const Header = () => {
+interface HeaderProps {
+  cartDrawer?: ReactNode;
+}
+
+export const Header = ({ cartDrawer }: HeaderProps) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-6 py-4">
@@ -25,9 +30,12 @@ export const Header = () => {
             </a>
           </div>
           
-          <Button variant="default" size="lg" className="bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-primary-foreground font-bold shadow-[var(--shadow-gold)]">
-            Shop Now
-          </Button>
+          <div className="flex items-center gap-4">
+            {cartDrawer}
+            <Button variant="default" size="lg" className="hidden sm:flex bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-primary-foreground font-bold shadow-[var(--shadow-gold)]">
+              Shop Now
+            </Button>
+          </div>
         </nav>
       </div>
     </header>
