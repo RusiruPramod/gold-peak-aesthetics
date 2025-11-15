@@ -150,26 +150,45 @@ export const HeroSection = ({ onProductClick }: HeroSectionProps) => {
           </div>
         </motion.div>
 
-        {/* Premium Banner */}
-        <motion.div className="relative rounded-2xl overflow-hidden shadow-[var(--shadow-premium)] mb-12"
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: false }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-transparent to-gold/10 pointer-events-none z-10" />
-          <img src={premiumCollectionBanner} alt="Premium Collection" className="w-full h-[500px] object-cover" />
-          <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-background via-background/90 to-transparent z-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
-                Premium Supplement Collection
-              </span>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Kevin Levrone, Goldline & Ceylon Supplement Gold Series
-            </p>
-          </div>
-        </motion.div>
+       {/* Premium Banner (updated) */}
+<motion.div
+  className="relative rounded-2xl overflow-hidden shadow-[var(--shadow-premium)] mb-12"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: false, amount: 0.3 }} // 🔥 retrigger on every scroll
+  variants={{
+    hidden: { opacity: 0, y: 60, scale: 0.94 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: "easeOut",
+      },
+    },
+  }}
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-transparent to-gold/10 pointer-events-none z-10" />
+  
+  <img
+    src={premiumCollectionBanner}
+    alt="Premium Collection"
+    className="w-full h-[500px] object-cover"
+  />
+
+  <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-background via-background/90 to-transparent z-20">
+    <h2 className="text-3xl md:text-4xl font-bold mb-2">
+      <span className="bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
+        Premium Supplement Collection
+      </span>
+    </h2>
+    <p className="text-lg text-muted-foreground">
+      Kevin Levrone, Goldline & Ceylon Supplement Gold Series
+    </p>
+  </div>
+</motion.div>
+
 
         {/* Product Grid */}
         <motion.h2 className="text-3xl font-bold text-center mb-8"
