@@ -12,7 +12,7 @@ const fadeUp = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-muted/30 border-t border-border/50 mt-20">
+    <footer id="contact" className="bg-muted/30 border-t border-border/50 mt-20">
       <div className="container mx-auto px-6 py-12">
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -55,9 +55,19 @@ export const Footer = () => {
             <ul className="space-y-2">
               {["Products", "About Us", "Contact", "Blog", "FAQ"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-gold transition-colors">
+                  <button 
+                    onClick={() => {
+                      const sectionId = item === 'Products' ? 'products' : 
+                                      item === 'About Us' ? 'about' : 
+                                      item === 'Contact' ? 'contact' : '';
+                      if (sectionId) {
+                        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="text-sm text-muted-foreground hover:text-gold transition-colors"
+                  >
                     {item}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
