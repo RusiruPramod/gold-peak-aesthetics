@@ -3,8 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
+// 🔥 Replace "gold-peak-aesthetics" with your repo name
+const repoBase = "/gold-peak-aesthetics/";
+
 export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? repoBase : "/", // use base only for production
   server: {
     host: "::",
     port: 8080,
