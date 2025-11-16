@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Header } from "@/components/Header";
+import { Header } from "../../../Header";
 import { HeroSection, products, Product } from "@/components/HeroSection";
 import { ProductModal } from "@/components/ProductModal";
 import { CartDrawer } from "@/components/CartDrawer";
