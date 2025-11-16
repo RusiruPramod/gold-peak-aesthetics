@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/gold-peak-aesthetics/" : "/",
+  base: mode === "production" ? "/gold-peak-aesthetics/" : "/", // 🔥 important for GitHub Pages
   server: {
     host: "::",
     port: 8080,
@@ -16,28 +16,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    chunkSizeWarningLimit: 800, // Increase warning threshold
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Group React and related libraries
-          "react-vendor": ["react", "react-dom"],
-          // Group UI libraries (adjust based on what you use)
-          "ui-vendor": [
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu", 
-            "@radix-ui/react-select",
-            "lucide-react",
-            "class-variance-authority",
-            "clsx",
-            "tailwind-merge"
-          ],
-          // Group utility libraries
-          "utils-vendor": ["date-fns", "axios", "lodash"],
-          // If you have large components, split them too
-        }
-      }
-    }
-  }
 }));
