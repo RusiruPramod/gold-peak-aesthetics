@@ -24,7 +24,5 @@ const NavLink = forwardRef<HTMLAnchorElement, NavLinkCompatProps>(
 );
 
 NavLink.displayName = "NavLink";
-//done
-//0oooooo
-//ok
+
 export { NavLink };
