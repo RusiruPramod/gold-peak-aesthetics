@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/" : "/", // Change this to just "/"
+  base: "/", // Simple base path
   server: {
     host: "::",
     port: 8080,
@@ -17,5 +17,6 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     chunkSizeWarningLimit: 1000,
+    assetsDir: "assets",
   },
 }));
