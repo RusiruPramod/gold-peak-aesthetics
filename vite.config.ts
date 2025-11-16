@@ -17,16 +17,25 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 800, // Increase warning threshold
     rollupOptions: {
-      external: [], // Remove any external dependencies that should be bundled
       output: {
         manualChunks: {
-          vendor: [
-            'react', 
-            'react-dom',
-            // Remove 'react/jsx-runtime' from manual chunks - let Vite handle it
-          ]
+          // Group React and related libraries
+          "react-vendor": ["react", "react-dom"],
+          // Group UI libraries (adjust based on what you use)
+          "ui-vendor": [
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-dropdown-menu", 
+            "@radix-ui/react-select",
+            "lucide-react",
+            "class-variance-authority",
+            "clsx",
+            "tailwind-merge"
+          ],
+          // Group utility libraries
+          "utils-vendor": ["date-fns", "axios", "lodash"],
+          // If you have large components, split them too
         }
       }
     }
